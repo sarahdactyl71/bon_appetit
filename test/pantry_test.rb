@@ -39,7 +39,6 @@ class PantryTest < Minitest::Test
   end
 
   def test_can_we_add_another_recipe
-    skip
     r = Recipe.new("Spaghetti")
     r.add_ingredient("Noodles", 10)
     r.add_ingredient("Sauce", 10)

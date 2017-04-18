@@ -26,8 +26,12 @@ def restock(food, amount)
   end
 end
 
-def add_to_shopping_list(ingredient)
-  @stock[ingredient]
+def add_to_shopping_list(items)
+  if shopping_list == {}
+  @shopping_list = items.ingredients
+  elsif items.ingredients.keys.include?(shopping_list.keys.any?)
+    
+  end
 end
 
 end
