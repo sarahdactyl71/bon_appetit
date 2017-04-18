@@ -15,8 +15,9 @@ class PantryTest < Minitest::Test
   end
 
   def test_can_we_check_stock
-    skip
     assert_equal 0, pantry.stock_check("Cheese")
+    pantry.restock("Cheese", 10)
+    assert_equal 10, pantry.stock_check("Cheese")
   end
 
   def test_can_we_restock
