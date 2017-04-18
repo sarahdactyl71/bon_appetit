@@ -18,6 +18,14 @@ def stock_check(food)
   end
 end
 
+def list_check(food)
+  if shipping_list.keys.include?(food.to_sym)
+    shopping_list[food.to_sym]
+  else
+    0
+  end
+end
+
 def restock(food, amount)
   if stock_check(food) == 0
   @stock[food.to_sym] = amount
@@ -26,12 +34,32 @@ def restock(food, amount)
   end
 end
 
+def update_shopping(food, amount)
+  if list_check(food) == 0
+  @shopping_list[food.to_sym] = amount
+  else
+    amount + shopping_list[food.to_sym]
+  end
+end
+
 def add_to_shopping_list(items)
   if shopping_list == {}
   @shopping_list = items.ingredients
-  elsif items.ingredients.keys.include?(shopping_list.keys.any?)
-    
+  # else
+  #   items.ingredients.keys.each do |item|
+  #   items.ingredients.values.each do |amount|
+  #     update_shopping(item, amount)
+  #   end
+  #   end
   end
+  # binding.pry
+end
+
+def print_shopping_list
+  #I know this probably isn't correct, but I'mg
+  #going to type what I think I could do
+  shopping_list.each do |key, value|
+    "* #{{key}, #{{value}}}"
 end
 
 end

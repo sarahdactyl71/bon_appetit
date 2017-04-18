@@ -39,12 +39,29 @@ class PantryTest < Minitest::Test
   end
 
   def test_can_we_add_another_recipe
+    skip
+    r1 = Recipe.new("Cheese Pizza")
+    r1.add_ingredient("Cheese", 20)
+    r1.add_ingredient("Flour", 20)
+    pantry.add_to_shopping_list(r1)
+
     r = Recipe.new("Spaghetti")
     r.add_ingredient("Noodles", 10)
     r.add_ingredient("Sauce", 10)
     r.add_ingredient("Cheese", 5)
     ingredients = {"Cheese" => 25, "Flour" => 20, "Noodles" => 10, "Sauce" => 10}
     assert_equal ingredients, pantry.add_to_shopping_list(r)
+    assert_equal ingredients, pantry.shopping_list
+  end
+
+  def test_can_we_print_a_list
+    r = Recipe.new("Spaghetti")
+    r.add_ingredient("Noodles", 10)
+    r.add_ingredient("Sauce", 10)
+    r.add_ingredient("Cheese", 5)
+    pantry.add_to_shopping_list(r)
+    list = "* Cheese: 5\n* Noodles: 10\n* Sauce: 10"
+    assert_equal list, pantry.print_shopping_list
   end
 
 end
