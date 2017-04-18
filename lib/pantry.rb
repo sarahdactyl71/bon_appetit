@@ -1,10 +1,13 @@
 require 'pry'
+require './lib/recipe'
+
 class Pantry
 
-attr_reader :stock
+attr_reader :stock, :shopping_list
 
-def initialize(stock= {})
+def initialize(stock= {}, shopping_list = {})
   @stock = stock
+  @shopping_list = shopping_list
 end
 
 def stock_check(food)
@@ -21,6 +24,10 @@ def restock(food, amount)
   else
     amount + stock[food.to_sym]
   end
+end
+
+def add_to_shopping_list(ingredient)
+  @stock[ingredient]
 end
 
 end
